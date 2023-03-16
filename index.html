@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avatar: The last Airbender</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{title}}</h1>
+    <p v-if="charactersList.length === 0">There are no characters</p>
+    <ul v-else-if="charactersList.length % 2 === 0">
+      <li v-for="character in charactersList">{{character.name}}</li>
+    </ul>
+    <p><span v-for="(character, index) in charactersList">{{character.name}}{{index === charactersList.length - 1 ? '' : ', '}} </span></p>
+    <p v-else>There are odd characters!</p>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp } = Vue
+
+    const app = createApp({
+      data: () => {
+        return {
+          title: "Avatar: The last Airbender",
+          charactersList: [
+            { name: "Aang", },
+            { name: "Zuko", },
+            { name: "Toph", },
+            { name: "Katara", },
+          ]
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
 </html>
